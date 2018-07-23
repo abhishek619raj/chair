@@ -31,7 +31,7 @@ class PartView(APIView):
 	def get(self,request,part_id=None):
 		try:
 			if(part_id):
-				part_data = Part.objects.filter(pk=part_id,is_deleted = False)
+				part_data = Part.objects.filter(pk=part_id,is_deleted = False)[0]
 				get_data = PartSerializer(part_data)
 			else:
 				part_data = Part.objects.filter(is_deleted = False)
@@ -79,7 +79,7 @@ class PartTypeView(APIView):
 	def get(self,request,parttype_id=None):
 		try:
 			if(parttype_id):
-				parttype_data = PartType.objects.filter(pk=parttype_id,is_deleted = False)
+				parttype_data = PartType.objects.filter(pk=parttype_id,is_deleted = False)[0]
 				get_data = PartTypeSerializer(parttype_data)
 			else:
 				parttype_data = PartType.objects.filter(is_deleted = False)

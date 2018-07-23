@@ -30,7 +30,7 @@ class ChairView(APIView):
 	def get(self,request,chair_id=None):
 		try:
 			if(chair_id):
-				chair_data = Chair.objects.filter(pk=chair_id,is_deleted = False)
+				chair_data = Chair.objects.filter(pk=chair_id,is_deleted = False)[0]
 				get_data = ChairSerializer(chair_data)
 			else:
 				chair_data = Chair.objects.filter(is_deleted = False)
@@ -79,7 +79,7 @@ class ChairTypeView(APIView):
 	def get(self,request,chairtype_id=None):
 		try:
 			if(chairtype_id):
-				chairtype_data = ChairType.objects.filter(pk=chairtype_id,is_deleted = False)
+				chairtype_data = ChairType.objects.filter(pk=chairtype_id,is_deleted = False)[0]
 				get_data = ChairTypeSerializer(chairtype_data)
 			else:
 				chairtype_data = ChairType.objects.filter(is_deleted = False)
