@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from app.chair.models import Chair,ChairType
 
-# from app.user.models import UserProjects
-
-## written by abhishek
 class ChairSerializer(serializers.ModelSerializer):
 	class Meta:
 		model =  Chair 

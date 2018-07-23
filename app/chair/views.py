@@ -30,10 +30,10 @@ class ChairView(APIView):
 	def get(self,request,chair_id=None):
 		try:
 			if(chair_id):
-				chair_data = Chair.objects.get(pk=chair_id)
+				chair_data = Chair.objects.filter(pk=chair_id,is_deleted = False)
 				get_data = ChairSerializer(chair_data)
 			else:
-				chair_data = Chair.objects.all()
+				chair_data = Chair.objects.filter(is_deleted = False)
 				get_data = ChairSerializer(chair_data,many=True)
 			return Response(get_data.data,status=status.HTTP_200_OK)
 		except Exception as err: 
@@ -62,6 +62,7 @@ class ChairView(APIView):
 			return Response("Error while deleting the chair",500)
 
 
+
 class ChairTypeView(APIView):
 	
 	def post(self,request):
@@ -78,10 +79,10 @@ class ChairTypeView(APIView):
 	def get(self,request,chairtype_id=None):
 		try:
 			if(chairtype_id):
-				chairtype_data = ChairType.objects.get(pk=chairtype_id)
+				chairtype_data = ChairType.objects.filter(pk=chairtype_id,is_deleted = False)
 				get_data = ChairTypeSerializer(chairtype_data)
 			else:
-				chairtype_data = ChairType.objects.all()
+				chairtype_data = ChairType.objects.filter(is_deleted = False)
 				get_data = ChairTypeSerializer(chairtype_data,many=True)
 			return Response(get_data.data,status=status.HTTP_200_OK)
 		except Exception as err: 
@@ -90,15 +91,12 @@ class ChairTypeView(APIView):
 
 	def put(self,request,chairtype_id):
 		try:
-			print("sadasd")
 			get_data = ChairType.objects.get(pk=chairtype_id)
 			update_data = ChairTypeSerializer(get_data,data=request.data)
-			print("sadasd")
 			if update_data.is_valid():
 				update_data.save()
 				return Response("chairtype details updated Successfully")
 			else:
-				print("sadasd")
 				return Response(update_data.errors)	
 		except:
 			return Response("Error")
