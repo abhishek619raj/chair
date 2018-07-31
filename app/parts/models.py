@@ -1,8 +1,6 @@
 from django.db import models
 from datetime import datetime
 
-
-
 class Part(models.Model):
 	name = models.CharField(max_length=255)
 	description = models.CharField(max_length=255)	
@@ -13,7 +11,10 @@ class Part(models.Model):
 class PartType(models.Model):
 	name = models.CharField(max_length=255)
 	part = models.ForeignKey(Part)
-	description = models.CharField(max_length=255)	
+	description = models.CharField(max_length=255)
+	# price = models.IntegerField(default="")
+	# price = models.IntegerField(default="0")
+	price = models.FloatField(null=True, blank=True, default=None)
 	is_deleted = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
 	updated_at = models.DateTimeField(auto_now_add=True, blank=True)

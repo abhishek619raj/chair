@@ -25,7 +25,7 @@ SECRET_KEY = '&dc4mx&f1mj8&cjye=5jcep%(7h92erm*u$egsq#gymg*dd^r0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'app.chair',
     'app.parts',
     'app.user',
+    'app.order',
+    'corsheaders', 
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -48,10 +52,23 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+      'rest_framework.authentication.TokenAuthentication',
+ 
+   ),
+   # 'DEFAULT_PERMISSION_CLASSES': (
+   #      'rest_framework.permissions.IsAuthenticated',
+   #  )
+}
+
 
 ROOT_URLCONF = 'project_chair.urls'
 
@@ -122,6 +139,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
