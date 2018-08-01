@@ -15,20 +15,6 @@ class ChairSerializer(serializers.ModelSerializer):
 			}
 		}
 
-		
-# class ChairTypeSerializer(serializers.ModelSerializer):
-# 	class Meta:
-# 		model =  ChairType
-# 		fields = ('id','part_type','chair','name','description','is_deleted','created_at','updated_at')
-# 		extra_kwargs = {
-# 			'name': {
-# 				'required':True,
-# 				'error_messages':{
-# 				'required':"Please fill this field",
-# 				}
-# 			}
-# 		}
-
 
 
 class ChairTypeSerializer(serializers.ModelSerializer):
@@ -48,7 +34,7 @@ class ChairTypeSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model =  ChairType
-		fields = ('id','part_type','part_type_name','price_of_item','parent_id','chair_name','chair','name','description','is_deleted','created_at','updated_at')
+		fields = ('id','part_type','part_type_name','parent_id','chair_name','chair','name','description','is_deleted','created_at','updated_at')
 		extra_kwargs = {
 			'name': {
 				'required':True,

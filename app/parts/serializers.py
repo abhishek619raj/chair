@@ -18,7 +18,7 @@ class PartSerializer(serializers.ModelSerializer):
 class PartTypeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model =  PartType
-		fields = ('id','name','part','description','is_deleted','created_at','updated_at')
+		fields = ('id','name','quantity_item','part','price_item','description','is_deleted','created_at','updated_at')
 		extra_kwargs = {
 			'name': {
 				'required':True,

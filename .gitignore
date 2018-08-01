@@ -1,0 +1,7 @@
+
+app/chair/migrations/*
+app/manager/migrations/*
+app/parts/migrations/*
+app/order/migrations/*
+app/user/migrations/*
+*.pyc

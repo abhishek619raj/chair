@@ -7,10 +7,9 @@ from app.parts.models import Part,PartType
 class Order(models.Model):
 
 	chair = models.ForeignKey(Chair)
-	# chairtype = models.ForeignKey(ChairType)
-	# part = models.ForeignKey(Part)
-	parttype = models.ForeignKey(PartType,null=True,blank=True)
-	# quantity_of_item = models.IntegerField(blank=True,null=True)
+	part_type = models.ForeignKey(PartType,null=True,blank=True)
+	quantity = models.IntegerField(default='',blank=True,null=True)
+	price = models.FloatField(null=True, blank=True)
 	is_deleted = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
 	updated_at = models.DateTimeField(auto_now_add=True, blank=True)

@@ -15,10 +15,9 @@ class Chair(models.Model):
 class ChairType(models.Model):
 	name = models.CharField(max_length=255)
 	chair = models.ForeignKey(Chair)
-	parent_id = models.IntegerField(max_length=10)
 	part_type = models.ForeignKey(PartType)
+	parent_id = models.IntegerField()
 	description = models.CharField(max_length=255)
-	# price = models.IntegerField(default="",max_length=10)
 	is_deleted = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)
 	updated_at = models.DateTimeField(auto_now_add=True, blank=True)

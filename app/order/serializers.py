@@ -48,7 +48,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model =  Order
-		fields = ('id','chair','parttype','chair_name','part_type_name','quantity','is_deleted','created_at','updated_at')
+		fields = ('id','chair','price','part_type','chair_name','part_type_name','quantity','is_deleted','created_at','updated_at')
 		extra_kwargs = {
 			'chair': {
 				'required':True,
