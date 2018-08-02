@@ -4,51 +4,26 @@ from app.chair.models import ChairType,Chair
 from app.parts.models import PartType,Part
 
 
-# class OrderSerializer(serializers.ModelSerializer):
-# 	class Meta:
-# 		model =  Order
-# 		fields = ('id','chair','quantity','is_deleted','created_at','updated_at')
-# 		extra_kwargs = {
-# 			'quantity': {
-# 				'required':True,
-# 				'error_messages':{
-# 				'required':"Please fill this field",
-# 				}
-# 			}
-# 		}
 
 class OrderSerializer(serializers.ModelSerializer):
-	# part_type = serializers.SerializerMethodField("getPartTypeName")
-	# def getPartTypeName(self,obj):
-	# 	try:
-	# 		return PartType.objects.get(id=obj.part_type.id).Part
-	# 	except Exception as e:
-	# 		print(e)
 	
-	# chair_name = serializers.SerializerMethodField("getChairName")
-	# def getChairName(self,obj):
-	# 	try:
-	# 		return Chair.objects.get(id=obj.chair.id).name
-	# 	except Exception as e:
-	# 		print(e)
-
-	part_type_name = serializers.SerializerMethodField("getPartTypeName")
-	def getPartTypeName(self,obj):
+	quantity_data = serializers.SerializerMethodField("getQuantity")
+	def getQuantity(self,obj):
 		try:
-			return PartType.objects.get(id=obj.parttype.id).name
+			return PartType.objects.get(id=obj.part_type.id).quantity_item
 		except Exception as e:
 			print(e)
 
-	chair_name = serializers.SerializerMethodField("getChairName")
-	def getChairName(self,obj):
+	chair_parent_id = serializers.SerializerMethodField("ChairParentId")
+	def ChairParentId(self,obj):
 		try:
-			return Chair.objects.get(id=obj.chair.id).name
+			return ChairType.objects.get(id=obj.chair_type.id).parent_id
 		except Exception as e:
 			print(e)
 
 	class Meta:
 		model =  Order
-		fields = ('id','chair','price','part_type','chair_name','part_type_name','quantity','is_deleted','created_at','updated_at')
+		fields = ('id','chair','price','chair_type','part_type','quantity_data','chair_parent_id','quantity','is_deleted','created_at','updated_at')
 		extra_kwargs = {
 			'chair': {
 				'required':True,
@@ -57,18 +32,3 @@ class OrderSerializer(serializers.ModelSerializer):
 				}
 			}
 		}
-
-
-# class LeftItemSerializer(serializers.ModelSerializer):
-# 	class Meta:
-# 		model =  LeftItem
-# 		fields = ('id','itemleft','description','is_deleted','created_at','updated_at')
-# 		extra_kwargs = {
-# 			'item': {
-# 				'required':True,
-# 				'error_messages':{
-# 				'required':"Please fill this item",
-# 				}
-# 			}
-# 		}
-# 		

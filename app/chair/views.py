@@ -22,7 +22,7 @@ class ChairView(APIView):
 			if not(chair_data.is_valid()):
 				return Response(chair_data.errors)
 			chair_data.save()
-			return Response("chair created successfully",status=status.HTTP_201_CREATED)
+			return Response(chair_data.data,status=status.HTTP_201_CREATED)
 		except Exception as err:
 			print(err)
 			return Response("Error while creating chair")

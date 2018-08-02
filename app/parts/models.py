@@ -12,7 +12,7 @@ class PartType(models.Model):
 	name = models.CharField(max_length=255)
 	part = models.ForeignKey(Part)
 	description = models.CharField(max_length=255)
-	quantity_item = models.IntegerField()
+	quantity_item = models.IntegerField(null=True,blank=True)
 	price_item = models.FloatField(null=True,blank=True)
 	is_deleted = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)

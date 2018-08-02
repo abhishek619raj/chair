@@ -8,7 +8,8 @@ class Order(models.Model):
 
 	chair = models.ForeignKey(Chair)
 	part_type = models.ForeignKey(PartType,null=True,blank=True)
-	quantity = models.IntegerField(default='',blank=True,null=True)
+	chair_type = models.ForeignKey(ChairType,default="")
+	quantity = models.IntegerField(blank=True,null=True)
 	price = models.FloatField(null=True, blank=True)
 	is_deleted = models.BooleanField(default=False)
 	created_at = models.DateTimeField(auto_now_add=True, blank=True)

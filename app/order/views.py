@@ -21,6 +21,15 @@ class OrderView(APIView):
 			if not(order_data.is_valid()):
 				return Response(order_data.errors)
 			order_data.save()
+			print(order_data.data)
+			var1 = (order_data.data.get('quantity'))
+			print(var1)
+			var2 = (order_data.data.get('quantity_data'))
+			print(var2)
+			if var1 > var2:
+				print("Too much chairs... WE ")
+			print(var2 - var1)
+			LeftItem = print(var2 - var1) .save()
 			return Response("order placed successfully",status=status.HTTP_201_CREATED)
 		except Exception as err:
 			print(err)
@@ -42,7 +51,9 @@ class OrderView(APIView):
 	def put(self,request,order_id):
 		try:
 			get_data = Order.objects.get(pk=order_id)
+
 			update_data = OrderSerializer(get_data,data=request.data)
+
 			if update_data.is_valid():
 				update_data.save()
 				return Response("order details updated Successfully")

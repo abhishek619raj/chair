@@ -23,7 +23,7 @@ class PartView(APIView):
 				return Response(part_data.errors)
 			part_data.save()
 			print(part_data);
-			return Response("part created successfully",status=status.HTTP_201_CREATED)
+			return Response(part_data.data,status=status.HTTP_201_CREATED)
 		except Exception as err:
 			print(err)
 			return Response("Error while creating part")
@@ -71,7 +71,7 @@ class PartTypeView(APIView):
 			if not(parttype_data.is_valid()):
 				return Response(parttype_data.errors)
 			parttype_data.save()
-			return Response("Part t=Type created successfully",status=status.HTTP_201_CREATED)
+			return Response(parttype_data.data,status=status.HTTP_201_CREATED)
 		except Exception as err:
 			print(err)
 			return Response("Error while creating Parttype")
